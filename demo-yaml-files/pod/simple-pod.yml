@@ -1,0 +1,14 @@
+# Simple single container pod
+apiVersion: v1
+kind: Pod
+metadata:
+  name: simpleapp-pod
+  labels:
+    app: simpleApp
+    type: frontend
+spec:
+  containers:
+  - name: nginx-container
+    image: nginx
+    ports:
+      - containerPort: 80

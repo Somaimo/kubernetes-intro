@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: simpleapp-replicaset
+  labels:
+    app: simpleapp
+    type: frontend
+  
+spec:
+  template:
+      metadata:
+        name: simpleapp-pod
+        labels:
+          app: simpleApp
+          type: frontend
+      spec:
+        containers:
+        - name: nginx-container
+          image: nginx
+          ports:
+            - containerPort: 80
+  replicas: 1
+  selector:
+    matchLabels:
+      app: simpleApp

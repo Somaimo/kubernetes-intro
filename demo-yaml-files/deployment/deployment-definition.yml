@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: simpleapp-deployment
+    labels:
+      app: simpleapp
+      type: frontend
+spec:
+  template:
+      metadata:
+        name: simpleapp-pod
+        labels:
+          app: simpleapp
+          type: frontend
+      spec:
+        containers:
+        - name: nginx-controller
+          image: nginx:1.7.1
+          resources:
+            limits:
+              cpu: "0.8"
+              memory: "1Gi"
+  replicas: 3
+  selector:
+    matchLabels:
+      type: frontend
