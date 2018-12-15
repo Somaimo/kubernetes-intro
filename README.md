@@ -66,4 +66,4 @@ A sample yaml file is included as always and here are the most important kubectl
 ## LICENSE
 
 GNU General Public License v3.0
-See `COPYING <COPYING>`_ to see the full text.
+See [COPYING](COPYING) to see the full text.
