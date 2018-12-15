@@ -62,3 +62,8 @@ A sample yaml file is included as always and here are the most important kubectl
 - ```kubectl rollout status deployment/[deployment-name]``` shows the status of the current deployment.
 - ```kubectl rollout history deployment/[deployment-name]``` shows the history of deployments for a specific deployment definition
 - ```kubectl rollout undo deployment/[deployment-name]``` undos a rollout or update to a deployment (for example updating the image). This is actually achieved by creating a new replicaset for the upgraded version and if things faile, this command just removes the pods of that new replicaset and instantiates new containers from the old replicaset. Neat right?!
+
+## LICENSE
+
+GNU General Public License v3.0
+See `COPYING <COPYING>`_ to see the full text.
