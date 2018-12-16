@@ -89,6 +89,22 @@ For this architecture, we would define three services:
 
 There is a example [service yaml file](demo-yaml-files/service/simple-microserviceapp.yml)
 
+# Kubernetes example voting app
+
+The folder ```example-voting-app``` contains a complete set of deployments for the docker example app.
+
+This folder contains deployment definitions for the Docker example app to showcase kubernetes.
+it is meant to be deployed on a self hosted kubernetes cluster and does not depend on any external service.
+
+There is however a caveat, where you have to provide your own external load balancer, if you want to truly test this app.
+Below is the architecture and all the deployments created.
+
+![Image of the example voting app](/resources/images/example-voting-app-architecture.png)
+
+You can initialize the app with ```kubectl create -f ./example-voting-app/```.
+
+**IMPORTANT** Obviously this is all ephermal and nothing survives a ```kuebctl delete -f [.yml files]```.
+
 ## LICENSE
 
 GNU General Public License v3.0
