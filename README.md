@@ -89,7 +89,7 @@ For this architecture, we would define three services:
 
 There is a example [service yaml file](demo-yaml-files/service/simple-microserviceapp.yml)
 
-# Kubernetes example voting app
+## Kubernetes example voting app
 
 The folder ```example-voting-app``` contains a complete set of deployments for the docker example app.
 
