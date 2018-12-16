@@ -63,6 +63,32 @@ A sample yaml file is included as always and here are the most important kubectl
 - ```kubectl rollout history deployment/[deployment-name]``` shows the history of deployments for a specific deployment definition
 - ```kubectl rollout undo deployment/[deployment-name]``` undos a rollout or update to a deployment (for example updating the image). This is actually achieved by creating a new replicaset for the upgraded version and if things faile, this command just removes the pods of that new replicaset and instantiates new containers from the old replicaset. Neat right?!
 
+### Services
+
+A service allows for a application, running inside pod(s), to be reachabel from either inside or outside the cluster. There are three primary ways to achieve this (well four to be exact).
+
+- NodePort - Exposes a service running inside pod(s) on a specific port on the node (30080 for example). This NodePort is reserved on **ALL** nodes inside the cluster and default port range is 30000 to 32767.
+- ClusterIP - Reserves a specific cluster IP for the service running inside pod(s). The service is then usually only reachable inside the cluster.
+- LoadBalancer - This construct enables the kubernetes cluster to expose a service through an external load balancer. **IMPORTANT** This only truly works in a cloud environment where a external load balancer is connected to the kubernetes / etcd cluster to read the configMaps.
+
+#### Defining a service
+
+Defining a service is quite easy and you can look at a example at the [service yaml file](demo-yaml-files/service/service-definition.yml) for a simple example. Services use selectors like "name", "type" or "label" to choose which pod(s) this service exposes.
+
+#### Reasonable architecture
+
+Now that we have a basic understanding of how deployments and services work, we can look at a simple architecture that enables each component of a microservice architecture to communicate with its necessary peers. The graphic below shows a simple microservice app, split into three tier (frontend, backend and redis). *Source: KodeKloud*
+
+![Image of a simple microservice architecture](resources/images/simple-architecture.PNG)
+
+For this architecture, we would define three services:
+
+- frontend service of either type ```LoadBalancer```(if this is running in a cloud environment) or ```NodePort``` to expose them to the big wide world.
+- backend service of type ```ClusterIP```. This service is only available inside the cluster and spans all nodes and pods with ```type: backend```.
+- redis service of type ```ClusterIP```. This service again is only available inside the cluster and spans all nodes and pods with ```type: redis```.
+
+There is a example [service yaml file](demo-yaml-files/service/simple-microserviceapp.yml)
+
 ## LICENSE
 
 GNU General Public License v3.0
