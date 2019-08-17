@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: voting-app-deployment
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       name: voting-app-pod
@@ -29,11 +29,10 @@ metadata:
     name: voting-service
     app: demo-voting-app
 spec:
-  type: NodePort
   selector:
     name: voting-app-pod
     app: demo-voting-app
   ports:
-  - port: 80
+  - name: http
+    port: 80
     targetPort: 80
-    nodePort: 30080
